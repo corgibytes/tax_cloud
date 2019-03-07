@@ -65,8 +65,8 @@ workflows:
 
         # Test that the gem is actually build.
       #- deploy:
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              ignore: /.*/
+#          filters:
+#            tags:
+#              only: /.*/
+#            branches:
+#              ignore: /.*/
