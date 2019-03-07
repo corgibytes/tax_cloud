@@ -16,7 +16,7 @@ jobs:
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       # run tests!
-      - run: bundle exec rake tests
+      - run: bundle exec rake test
 
       - store_test_results:
           path: test/reports
