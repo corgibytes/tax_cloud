@@ -6,7 +6,8 @@ require 'vcr'
 Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
   test.pattern = 'test/test_*.rb'
-  test.verbose = false
+  # REM
+  #test.verbose = false
 end
 
 RDoc::Task.new do |rd|
