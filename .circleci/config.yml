@@ -21,6 +21,7 @@ jobs:
       - run:
           name: run tests
           command: |
+            mkdir /tmp/test-results
             bundle exec rake test
 
       - store_test_results:
