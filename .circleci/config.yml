@@ -65,7 +65,7 @@ workflows:
       # This is a problem as deploy depends on build but build
       # won't run on tags by default.  To fix this allow
       # build to run on any tags.
-      - build
+      - build:
           filters:
             tags:
               only: /.*/
