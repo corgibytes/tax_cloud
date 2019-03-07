@@ -15,7 +15,8 @@ jobs:
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
-      # run tests!
+      # Run the tests using the minitest-ci gem.  This will
+      # create the test/reports folder.
       - run: bundle exec rake test
 
       - store_test_results:
