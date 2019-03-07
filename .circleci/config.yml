@@ -4,8 +4,6 @@ jobs:
     docker:
       # Image to run Ruby 1.9.3 with the latest bundler, RubyGems, etc.
       - image: corgibytes/ruby-1.9.3:1.0.0
-        environment:
-          TESTOPTS: "--ci-dir=/tmp/test-results"
 
     working_directory: ~/repo
 
@@ -18,14 +16,9 @@ jobs:
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       # run tests!
-      - run:
-          name: run tests
-          command: |
-            mkdir /tmp/test-results
-            bundle exec rake test
+      - run: bundle exec rake tests
 
       - store_test_results:
-          path: /tmp/test-results
+          path: test/reports
       - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+          path: test/reports
