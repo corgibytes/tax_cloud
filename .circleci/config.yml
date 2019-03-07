@@ -61,7 +61,14 @@ workflows:
   version: 2
   test-deploy:
     jobs:
+      # By default the tag filter is set to ignore all (i.e. /.*/).
+      # This is a problem as deploy depends on build but build
+      # won't run on tags by default.  To fix this allow
+      # build to run on any tags.
       - build
+          filters:
+            tags:
+              only: /.*/
       - deploy:
           requires:
             - build
