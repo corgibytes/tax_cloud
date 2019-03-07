@@ -45,9 +45,11 @@ jobs:
           name: Publish to Rubygems
           command: |
             gem build tax_cloud.gemspec
+            mkdir artifacts
+            mv corgibytes-tax_cloud-0.3.1.gem artifacts
 
       - store_artifacts:
-          path: corgibytes-tax_cloud-$(git describe --tags).gem
+          path: artifacts
 
 # REM: Test before we push to RubyGems
 # gem push "corgibytes-tax_cloud-$(git describe --tags).gem"
