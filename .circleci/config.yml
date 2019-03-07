@@ -61,7 +61,10 @@ workflows:
   test-deploy:
     jobs:
       - build
-      - deploy:
+      - deploy
+
+        # Test that the gem is actually build.
+      #- deploy:
           filters:
             tags:
               only: /.*/
