@@ -13,9 +13,9 @@ Create a [TaxCloud](http://www.taxcloud.com) merchant account at http://www.taxc
 3. Once you have registered for your Shipping Assistant account, you can find your USPS Shipping Assistant UserID in the "About" box, in parentheses to the right of the name of the registered user.
 
 ### Setup
-Add the gem to your Gemfile.
+Add the Corgibytes TaxCloud [gem](https://rubygems.org/gems/corgibytes-tax_cloud) to your Gemfile.
 
-    gem 'tax_cloud'
+    gem 'corgibytes-tax_cloud', require: 'tax_cloud'
 
 Configure your environment. For example, create an initializer in Rails in <tt>config/initializers/tax_cloud.rb</tt>.
 
