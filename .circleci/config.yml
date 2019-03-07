@@ -23,3 +23,47 @@ jobs:
           path: test/reports
       - store_artifacts:
           path: test/reports
+
+
+  deploy:
+    docker:
+      - image: ccorgibytes/ruby-1.9.3:1.0.0
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Create the RubyGems credential file which as the
+      # RubyGems API key in it.  See the sh file for details
+      # about the Environment variable that should be setup.
+      - run:
+          name: Setup Rubygems
+          command: bash .circleci/setup-rubygems.sh
+
+      - run:
+          name: Publish to Rubygems
+          command: |
+            gem build tax_cloud.gemspec
+
+      - store_artifacts:
+          path: corgibytes-tax_cloud-$(git describe --tags).gem
+
+# REM: Test before we push to RubyGems
+# gem push "corgibytes-tax_cloud-$(git describe --tags).gem"
+
+
+# Do the build on every commit but only do the
+# the deploy to RubyGems on tags.  Don't forget to
+# update the version.rb file before tagging the build.
+workflows:
+  version: 2
+  test-deploy:
+    jobs:
+      - build
+      - deploy:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
