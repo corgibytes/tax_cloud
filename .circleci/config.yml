@@ -45,20 +45,19 @@ jobs:
       # is the same as the tag.  If not then this will fail.
       - run:
           name: Publish to Rubygems
-          command:
-            TAG=${CIRCLE_TAG/v/''}
+          command: |
+            VERSION=${CIRCLE_TAG/v/''}
             gem build tax_cloud.gemspec
             mkdir artifacts
-            cp corgibytes-tax_cloud-$TAG.gem artifacts
-
-          # gem push corgibytes-tax_cloud-${CIRCLE_TAG}.gem
+            cp corgibytes-tax_cloud-$VERSION.gem artifacts
+          #gem push corgibytes-tax_cloud-$VERSION.gem
 
       - store_artifacts:
           path: artifacts
 
 # Do the build on every commit but only do the
 # the deploy to RubyGems on tags.  The tag should be
-# v.#.#.#.  Don't forget to update the version.rb f
+# v#.#.#.  Don't forget to update the version.rb
 # file before tagging the build.
 workflows:
   version: 2
