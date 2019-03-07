@@ -11,6 +11,7 @@ end
 
 group :test do
   gem 'minitest'
+  gem 'minitest-ci'
   gem 'vcr'
   gem 'webmock'
 end

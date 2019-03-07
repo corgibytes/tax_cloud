@@ -31,7 +31,8 @@ jobs:
       - run:
           name: run tests
           command: |
-            rake test
+            mkdir /tmp/test-results
+            bundle exec rake test
 
       # collect reports
       - store_test_results:
