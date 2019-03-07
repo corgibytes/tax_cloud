@@ -41,12 +41,15 @@ jobs:
           name: Setup Rubygems
           command: bash .circleci/setup-rubygems.sh
 
+      # Assumes the version number in the version.rb file
+      # is the same as the tag.  If not then this will fail.
       - run:
           name: Publish to Rubygems
-          command: |
+          command:
+            TAG=${CIRCLE_TAG/v/''}
             gem build tax_cloud.gemspec
             mkdir artifacts
-            cp corgibytes-tax_cloud-${CIRCLE_TAG}.gem artifacts
+            cp corgibytes-tax_cloud-$TAG.gem artifacts
 
           # gem push corgibytes-tax_cloud-${CIRCLE_TAG}.gem
 
