@@ -46,29 +46,27 @@ jobs:
           command: |
             gem build tax_cloud.gemspec
             mkdir artifacts
-            mv corgibytes-tax_cloud-0.3.1.gem artifacts
+            cp corgibytes-tax_cloud-${CIRCLE_TAG}.gem artifacts
+
+          # gem push corgibytes-tax_cloud-${CIRCLE_TAG}.gem
 
       - store_artifacts:
           path: artifacts
 
-# REM: Test before we push to RubyGems
-# gem push "corgibytes-tax_cloud-$(git describe --tags).gem"
-
-
 # Do the build on every commit but only do the
-# the deploy to RubyGems on tags.  Don't forget to
-# update the version.rb file before tagging the build.
+# the deploy to RubyGems on tags.  The tag should be
+# v.#.#.#.  Don't forget to update the version.rb f
+# file before tagging the build.
 workflows:
   version: 2
   test-deploy:
     jobs:
       - build
-      - deploy
-
-        # Test that the gem is actually build.
-      #- deploy:
-#          filters:
-#            tags:
-#              only: /.*/
-#            branches:
-#              ignore: /.*/
+      - deploy:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^v[0-9.]+/
+            branches:
+              ignore: /.*/
