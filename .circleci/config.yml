@@ -50,7 +50,7 @@ jobs:
             gem build tax_cloud.gemspec
             mkdir artifacts
             cp corgibytes-tax_cloud-$VERSION.gem artifacts
-          #gem push corgibytes-tax_cloud-$VERSION.gem
+            gem push corgibytes-tax_cloud-$VERSION.gem
 
       - store_artifacts:
           path: artifacts
