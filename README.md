@@ -1,5 +1,6 @@
 # TaxCloud
 
+[![Gem Version](https://badge.fury.io/rb/corgibytes-tax_cloud.svg)](https://badge.fury.io/rb/corgibytes-tax_cloud)
 [![CircleCI](https://circleci.com/gh/corgibytes/tax_cloud/tree/master.svg?style=shield)](https://circleci.com/gh/corgibytes/tax_cloud/tree/master)
 
 [TaxCloud](http://www.taxcloud.com) is a free service to calculate sales tax and generate tax reports. The Corgibytes TaxCloud [gem](https://rubygems.org/gems/corgibytes-tax_cloud) allows you to easily integrate with TaxCloud's API.
