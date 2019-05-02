@@ -42,9 +42,9 @@ module TaxCloud #:nodoc:
     # Once a purchase has been made and payment has been authorized, this method must be called. A matching Lookup call must have been made before this is called.
     #
     # === Options
-    # * <tt>date_authorized</tt> - The date the transaction was authorized. Default is today.
+    # [date_authorized] - The date the transaction was authorized. Default is today respecting timezone.
     def authorized(options = {})
-      options = { date_authorized: Date.today }.merge(options)
+      options = { date_authorized: Date.current }.merge(options)
 
       request_params = {
         'customerID' => customer_id,
@@ -60,9 +60,9 @@ module TaxCloud #:nodoc:
     # Complete the transaction. The <tt>order_id</tt> passed into <tt>captured</tt> must match the <tt>order_id</tt> that was passed into <tt>authorized</tt>.
     #
     # === Options
-    # [date_captured] The time the transaction was captured. Default is today.
+    # [date_captured] The time the transaction was captured. Default is today respecting timezone.
     def captured(options = {})
-      options = { date_captured: Date.today }.merge(options)
+      options = { date_captured: Date.current }.merge(options)
       request_params = {
         'customerID' => customer_id,
         'cartID' => cart_id,
@@ -77,10 +77,10 @@ module TaxCloud #:nodoc:
     # Combines the <tt>authorized</tt> and <tt>captured</tt> methods into a single call
     #
     # === Options
-    # [date_authorized] The date the transaction was authorized. Default is today.
-    # [date_captured] - The date the transaction was captured. Default is today.
+    # [date_authorized] The date the transaction was authorized. Default is today respecting timezone.
+    # [date_captured] - The date the transaction was captured. Default is today respecting timezone.
     def authorized_with_capture(options = {})
-      options = { date_authorized: Date.today, date_captured: Date.today }.merge(options)
+      options = { date_authorized: Date.current, date_captured: Date.current }.merge(options)
       request_params = {
         'customerID' => customer_id,
         'cartID' => cart_id,
@@ -96,9 +96,9 @@ module TaxCloud #:nodoc:
     # Marks any included cart items as returned.
     #
     # === Options
-    # [returned_date] The date the return occured. Default is today.
+    # [returned_date] The date the return occured. Default is today respecting timezone.
     def returned(options = {})
-      options = { returned_date: Date.today }.merge(options)
+      options = { returned_date: Date.current }.merge(options)
       request_params = {
         'orderID' => order_id,
         'cartItems' => { 'CartItem' => cart_items.map(&:to_hash) },
