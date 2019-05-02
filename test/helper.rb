@@ -6,7 +6,6 @@ require 'json'
 # for Circle CI builds.
 require 'minitest/ci'
 
-
 Savon.configure do |config|
   config.log = false
 end

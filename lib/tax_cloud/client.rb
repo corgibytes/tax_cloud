@@ -5,13 +5,8 @@ module TaxCloud #:nodoc:
     def initialize
       super TaxCloud::WSDL_URL
 
-      if client_params.key?(:read_timeout)
-        http.read_timeout = client_params[:read_timeout]
-      end
-
-      if client_params.key?(:open_timeout)
-        http.open_timeout = client_params[:open_timeout]
-      end
+      http.read_timeout = client_params[:read_timeout] if client_params.key?(:read_timeout)
+      http.open_timeout = client_params[:open_timeout] if client_params.key?(:open_timeout)
     end
 
     # Make a safe SOAP call.
@@ -22,7 +17,7 @@ module TaxCloud #:nodoc:
     # [body] Body content.
     def request(method, body = {})
       safe do
-        super method, :body => body.merge(auth_params)
+        super method, body: body.merge(auth_params)
       end
     end
 
